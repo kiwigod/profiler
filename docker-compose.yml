@@ -1,0 +1,91 @@
+version: '2'
+
+services:
+  curl:
+    build:
+      context: ./curl
+    volumes:
+    - ./curl:/app
+
+  phantomjs:
+    build:
+      context: ./phantomjs
+    volumes:
+      - ./phantomjs:/app
+
+  casperjs:
+    build:
+      context: ./casperjs
+    volumes:
+      - ./casperjs:/app
+
+  guzzle:
+    build:
+      context: ./guzzle
+    volumes:
+      - ./guzzle:/app
+
+  puppeteer:
+    build:
+      context: ./puppeteer
+    volumes:
+      - ./puppeteer:/app
+
+  goutte:
+    build:
+      context: ./goutte
+    volumes:
+      - ./goutte:/app
+
+  selenium:
+    build:
+      context: ./selenium
+    volumes:
+      - ./selenium:/app
+
+  dusk:
+    build:
+      context: ./dusk
+    volumes:
+      - ./dusk:/app
+    networks:
+      - backend
+
+  webdriverio:
+    build:
+      context: ./webdriverio
+    volumes:
+      - ./webdriverio:/app
+    networks:
+      - backend
+
+  accept-dusk:
+    build:
+      context: ./acceptance_test/dusk
+    volumes:
+      - ./acceptance_test/dusk:/app
+    networks:
+      - backend
+
+  accept-selenium:
+    build:
+      context: ./acceptance_test/selenium
+    volumes:
+      - ./acceptance_test/selenium:/app
+
+  accept-puppeteer:
+    build:
+      context: ./acceptance_test/puppeteer
+    volumes:
+      - ./acceptance_test/puppeteer:/app
+
+  selenium-server:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+    networks:
+      - backend
+
+networks:
+    backend:
+        driver: "bridge"

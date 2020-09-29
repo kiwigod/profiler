@@ -1,0 +1,8 @@
+*.log*
+*.deb
+formatted*
+vendor
+node_modules
+venv
+.idea
+*donkey*
